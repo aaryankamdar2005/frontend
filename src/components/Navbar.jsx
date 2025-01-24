@@ -1,13 +1,34 @@
-import React, { useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { assets } from '../assets/assets'
 import { useNavigate } from 'react-router-dom';
+import { Formcontext } from '../Formcontext/Formcontext';
 
-
+import Cookies from 'js-cookie';
 
 const Navbar = () => {
+    const {setCookieToken,cookieToken}=useContext(Formcontext);
+    const [isTokenAvailable, setIsTokenAvailable] = useState(false);
+    const[login,setLogin]=useState('Login');
     const [visible,setVisible]=useState(false);
 const navigate = useNavigate();
+useEffect(() => {
+    const token = Cookies.get("token");
+if(token){
+    setIsTokenAvailable(true);
+    setLogin('Logout');
+}
+else {
+    setIsTokenAvailable(false);
+    setLogin('Login');
+}
+  }, [login,cookieToken]);
+  const  logOut = ()=>{
+    setCookieToken(null);
+    Cookies.remove('token');
 
+
+  }
+console.log(Cookies.get("token"));
 
   return (
     <div className=' sm:w-full  py-2 px-3 h-auto flex justify-around  items-center'>
@@ -109,8 +130,9 @@ ease-in duration-300
  
     
     </div>
-<button onClick={()=>{navigate("/login")}} className='bg-black text-white rounded-2xl flex  px-8 py-3 items-center justify-center text-md font-bold'>
-Login
+    
+<button  onClick={ ()=>{ login==='Login'?navigate("/login"):logOut()}}     className='bg-black text-white rounded-2xl flex  px-8 py-3 items-center justify-center text-md font-bold'>
+{login}
 </button>
 
 

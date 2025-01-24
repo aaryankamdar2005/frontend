@@ -1,5 +1,5 @@
 import { createContext, useState } from "react";
-
+import Cookies from 'js-cookie';
 
 export const  Formcontext = createContext();
 
@@ -31,9 +31,10 @@ setFormData((prev)=>({
 
 }))
 }
+const [cookieToken,setCookieToken]=useState(Cookies.get('token'))
 
 return (
-    <Formcontext.Provider value={{formData,updateFormData}}>
+    <Formcontext.Provider value={{formData,updateFormData,cookieToken,setCookieToken}}>
         {props.children}
     </Formcontext.Provider>
 )

@@ -8,12 +8,13 @@ import Hero from './components/Hero'
 import Footer from './components/Footer';
 import Home from './pages/Home';
 import Login from './pages/Login';
-
+import { ToastContainer, toast } from 'react-toastify';
 function App() {
   
 
   return (
     <>
+<ToastContainer/>
       <Navbar/>
       <Routes>
         <Route path='/create' element={<Create/>}>
