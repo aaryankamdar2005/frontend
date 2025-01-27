@@ -6,6 +6,7 @@ import { Formcontext } from '../Formcontext/Formcontext';
 const Login = () => {
   const navigate=useNavigate();
 const {setCookieToken}=useContext(Formcontext);
+const backendurl = import.meta.env.VITE_BACKEND_URL;
 
   const [login,setLogin]=useState('Login');
 
@@ -16,40 +17,35 @@ const {setCookieToken}=useContext(Formcontext);
 const onSubmitHandler = async (event)=>{
 event.preventDefault();
 console.log(login);
-
-if(login=='Signup'){
-  const response = await axios.post( 'http://localhost:8000/user/signup',{name,email,password});
-  console.log('Response:', response);
-        console.log('Response data:', response.data);
-        console.log('Response data:', response.data.token);
-        if(response.data.success){
-          Cookies.set("token",response.data.token,{
-            expires:7,
-            path:'/',
-            domain:'localhost'
-          })
-
-          setCookieToken(Cookies.get("token"));
+try {
+  if(login=='Signup'){
+    const response = await axios.post(  backendurl + '/api/user/signup',{name,email,password});
+    console.log('Response:', response);
+          console.log('Response data:', response.data);
+          console.log('Response data:', response.data.token);
+          if(response.data.success){
+  localStorage.setItem('authtoken',response.data.token)
+          setCookieToken(response.data.token);
           navigate("/create");
-        }
-}
-else {
-  const response = await axios.post('http://localhost:8000/user/login',{email,password});
-  console.log(response);
-  console.log(response.data);
-  console.log('Response data:', response.data.token);
-  if(response.data.success){
-    Cookies.set("token",response.data.token,{
-      expires:7,
-      path:'/',
-      domain:'localhost'
-    })
-
-    setCookieToken(Cookies.get("token"));
-    navigate("/create");
+          }
   }
-
+  else {
+    const response = await axios.post( backendurl + '/api/user/login',{email,password});
+    console.log(response);
+    console.log(response.data);
+    console.log('Response data:', response.data.token);
+    if(response.data.success){
+      localStorage.setItem('authtoken',response.data.token)
+      setCookieToken(response.data.token);
+      navigate("/create");
+    }
+  
+  }
 }
+catch(error){
+console.log(error.message);
+}
+
 }
   return (
     <form onSubmit={onSubmitHandler} className='flex text-xl font-md flex-col justify-center items-center  gap-y-3'>

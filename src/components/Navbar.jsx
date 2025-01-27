@@ -12,7 +12,7 @@ const Navbar = () => {
     const [visible,setVisible]=useState(false);
 const navigate = useNavigate();
 useEffect(() => {
-    const token = Cookies.get("token");
+    const token = localStorage.getItem("authtoken");
 if(token){
     setIsTokenAvailable(true);
     setLogin('Logout');
@@ -24,11 +24,11 @@ else {
   }, [login,cookieToken]);
   const  logOut = ()=>{
     setCookieToken(null);
-    Cookies.remove('token');
+  localStorage.removeItem('authtoken');
 
 
   }
-console.log(Cookies.get("token"));
+console.log(Cookies.get("authtoken"));
 
   return (
     <div className=' sm:w-full  py-2 px-3 h-auto flex justify-around  items-center'>
