@@ -8,6 +8,7 @@ import Hero from './components/Hero'
 import Footer from './components/Footer';
 import Home from './pages/Home';
 import Login from './pages/Login';
+import Screening from './pages/Screening';
 
 function App() {
   
@@ -22,6 +23,8 @@ function App() {
          <Route path='/' element={<Home/>}>
          </Route>
          <Route path='/login' element={<Login/>}>
+         </Route>
+         <Route path='/screen' element={<Screening/>}>
          </Route>
       </Routes>
     <Footer/>

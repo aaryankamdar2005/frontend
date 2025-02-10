@@ -13,8 +13,8 @@ const Hero = () => {
      <h1 class="text-3xl font-extrabold sm:mb-10 lg:text-6xl">AI Resume Builder (Fast, Easy & Free to Use)</h1>
 <p className='text-xl'>Land your next job with one of the best AI resume builders online. Choose from dozens of recruiter-approved templates and add ready-to-use skills and phrases in one click. Millions have trusted our resume maker — and it’s free to use!</p>
 <div className=' flex flex-col gap-5 sm:flex-row  my-4 items-center gap-28 '>
-  <button className='bg-orange-300 px-8 py-3 rounded-3xl text-black font-bold transition-all duration-100 ease-in hover:bg-orange-200'>Import your Resume</button>
-  <button onClick={()=>{navigate("/create")}} className='bg-blue-500 px-8 py-3 rounded-3xl text-white font-bold transition-all duration-100 ease-in hover:bg-blue-300'>Create your Resume</button> 
+  <button  onClick={()=>{navigate("/screen")}}  className='bg-orange-300 px-8 py-3 rounded-3xl text-black font-bold transition-all duration-100 ease-in hover:bg-orange-200'>Import your Resume</button>
+  <button onClick={()=>{navigate("/create")}} className='bg-blue-500 px-8 py-3 rounded-3xl text-white font-bold transition-all duration-100 ease-in hover:bg-blue-300' >Create your Resume</button> 
 </div>
      </div>
 
