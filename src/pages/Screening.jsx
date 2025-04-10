@@ -39,12 +39,7 @@ export default function Screening() {
 
     
         feedback = {
-          contactInfo: lines.find((line) => line.includes("Contact Info"))?.split(": ")[1] || "Not Provided",
-          skills: lines.find((line) => line.includes("Skills"))?.split(": ")[1] || "Not Provided",
-          experience: lines.find((line) => line.includes("Experience"))?.split(": ")[1] || "Not Provided",
-          education: lines.find((line) => line.includes("Education"))?.split(": ")[1] || "Not Provided",
-          projects: lines.find((line) => line.includes("Projects"))?.split(": ")[1] || "Not Provided",
-          certifications: lines.find((line) => line.includes("Certifications"))?.split(": ")[1] || "Not Provided",
+    
           summary: lines.find((line) => line.includes("Summary"))?.split(": ")[1] || "Not Provided",
         };
 
@@ -119,12 +114,7 @@ export default function Screening() {
               <div className="mt-4">
                 <h3 className="font-semibold mb-2">Feedback:</h3>
                 <ul className="list-disc list-inside text-gray-700">
-                  <li><strong>Contact Info:</strong> {result.feedback.contactInfo}</li>
-                  <li><strong>Skills:</strong> {result.feedback.skills}</li>
-                  <li><strong>Experience:</strong> {result.feedback.experience}</li>
-                  <li><strong>Education:</strong> {result.feedback.education}</li>
-                  <li><strong>Projects:</strong> {result.feedback.projects}</li>
-                  <li><strong>Certifications:</strong> {result.feedback.certifications}</li>
+               
                   <li><strong>Summary:</strong> {result.feedback.summary}</li>
                 </ul>
               </div>
